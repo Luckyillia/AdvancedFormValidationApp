@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             fieldRequired("Email",email.getText().toString().trim());
             if(!isErr) {isEmail("Email",email.getText().toString().trim());}
             fieldRequired("Telefon",phone.getText().toString().trim());
+            if(!isErr){isPhone(phone.getText().toString().trim());}
             fieldRequired("Haslo",password_1.getText().toString().trim());
             fieldRequired("Potw. hasla",password_2.getText().toString().trim());
             if(!isErr) {isPassword(password_1.getText().toString().trim(),password_2.getText().toString().trim());}
@@ -63,9 +64,20 @@ public class MainActivity extends AppCompatActivity {
         }
     }
     public void isPassword(String pass_1, String pass_2){
-        if(!pass_1.equals(pass_2)){
+        if(pass_1.length()<8){
             isErr = true;
-            msg+="Hasła nie są zgodne!\n";
+            msg+="Hasło ma zawierac co namniej 8 znakow \n";
+        }else {
+            if (!pass_1.equals(pass_2)) {
+                isErr = true;
+                msg += "Hasła nie są zgodne!\n";
+            }
+        }
+    }
+    public void isPhone(String phoneVal){
+        if(phoneVal.length()<9){
+            isErr = true;
+            msg+="Numer telefonu ma zawierac co najmniej 9 cyfr \n";
         }
     }
 
